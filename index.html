@@ -1,0 +1,1470 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REWAVE | Clean Water. Stronger Communities.</title>
+
+<style>
+:root {
+  --navy:#102B3F;
+  --teal:#087E8B;
+  --aqua:#D9F3F0;
+  --bg:#F3F7F8;
+  --coral:#E76F51;
+  --muted:#667E89;
+  --border:#DDE8EA;
+}
+
+* {
+  box-sizing:border-box;
+}
+
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--navy);
+  font-family:Arial,Helvetica,sans-serif;
+  line-height:1.5;
+}
+
+button,input,select,textarea {
+  font:inherit;
+}
+
+button {
+  cursor:pointer;
+}
+
+a {
+  color:inherit;
+  text-decoration:none;
+}
+
+header {
+  background:white;
+  border-bottom:1px solid var(--border);
+  padding:17px 5%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
+
+.logo {
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:-1px;
+}
+
+.logo span {
+  background:var(--teal);
+  color:white;
+  padding:5px 10px;
+  border-radius:10px;
+  margin-right:5px;
+}
+
+nav {
+  display:flex;
+  align-items:center;
+  gap:17px;
+  flex-wrap:wrap;
+}
+
+nav button {
+  background:none;
+  border:0;
+  color:var(--navy);
+  font-weight:600;
+  font-size:14px;
+}
+
+nav button:hover {
+  color:var(--teal);
+}
+
+.btn {
+  background:var(--teal);
+  border:1px solid var(--teal);
+  color:white;
+  padding:12px 20px;
+  border-radius:10px;
+  font-weight:700;
+  display:inline-block;
+}
+
+.btn:hover {
+  background:#066873;
+}
+
+.btn.secondary {
+  background:white;
+  color:var(--teal);
+}
+
+.btn.danger {
+  background:var(--coral);
+  border-color:var(--coral);
+}
+
+.btn.small {
+  padding:8px 12px;
+  font-size:13px;
+}
+
+main {
+  max-width:1200px;
+  margin:auto;
+  padding:35px 20px 90px;
+  min-height:80vh;
+}
+
+section.page {
+  display:none;
+}
+
+section.page.active {
+  display:block;
+}
+
+h1 {
+  font-size:clamp(32px,5vw,54px);
+  line-height:1.12;
+  letter-spacing:-1.5px;
+}
+
+h2 {
+  font-size:27px;
+  letter-spacing:-.7px;
+}
+
+p {
+  color:var(--muted);
+}
+
+.eyebrow {
+  color:var(--teal);
+  font-weight:800;
+  font-size:12px;
+  letter-spacing:2px;
+}
+
+.hero {
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  align-items:center;
+  gap:40px;
+  min-height:470px;
+}
+
+.hero p {
+  font-size:18px;
+  max-width:550px;
+}
+
+.hero h1 span {
+  color:var(--teal);
+}
+
+.hero-art {
+  height:350px;
+  border-radius:30px;
+  background:var(--aqua);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero-art .symbol {
+  font-size:170px;
+  color:var(--teal);
+  line-height:1;
+}
+
+.floating {
+  background:white;
+  padding:18px 30px;
+  border-radius:15px;
+  box-shadow:0 10px 35px #102b3f20;
+  font-weight:bold;
+}
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:17px;
+  margin:23px 0;
+}
+
+.stats {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+  margin:25px 0;
+}
+
+.card {
+  background:white;
+  border:1px solid var(--border);
+  border-radius:17px;
+  padding:23px;
+  margin-bottom:15px;
+  box-shadow:0 5px 20px #102b3f08;
+}
+
+.card h3 {
+  margin:9px 0;
+}
+
+.stat-number {
+  font-size:38px;
+  font-weight:900;
+  display:block;
+}
+
+.stat-label {
+  color:var(--muted);
+  font-size:13px;
+}
+
+.banner {
+  background:var(--navy);
+  color:white;
+  border-radius:20px;
+  padding:30px;
+  margin:25px 0;
+}
+
+.banner p {
+  color:var(--aqua);
+}
+
+.row {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.tag {
+  display:inline-block;
+  padding:5px 11px;
+  border-radius:25px;
+  background:var(--aqua);
+  color:var(--teal);
+  font-size:12px;
+  font-weight:bold;
+}
+
+.tag.high {
+  background:#FFE1D8;
+  color:#9C3927;
+}
+
+.tag.medium {
+  background:#FFF0C7;
+  color:#896200;
+}
+
+.tag.low {
+  background:#DFF5E8;
+  color:#287348;
+}
+
+.report {
+  cursor:pointer;
+  transition:transform .15s;
+}
+
+.report:hover {
+  transform:translateY(-3px);
+  border-color:var(--teal);
+}
+
+.report h3 {
+  font-size:18px;
+}
+
+label {
+  display:block;
+  font-weight:700;
+  font-size:14px;
+  margin:15px 0;
+}
+
+input,select,textarea {
+  display:block;
+  width:100%;
+  margin-top:7px;
+  padding:12px;
+  background:white;
+  color:var(--navy);
+  border:1px solid #C9D8DD;
+  border-radius:9px;
+}
+
+input:focus,select:focus,textarea:focus {
+  outline:2px solid var(--teal);
+}
+
+.form-container {
+  max-width:780px;
+}
+
+.two {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+
+.timeline {
+  border-left:3px solid var(--aqua);
+  padding-left:25px;
+  margin-left:8px;
+}
+
+.event {
+  position:relative;
+  margin-bottom:23px;
+}
+
+.event::before {
+  content:"";
+  position:absolute;
+  left:-33px;
+  top:5px;
+  height:13px;
+  width:13px;
+  border-radius:50%;
+  background:var(--teal);
+}
+
+.event small {
+  color:var(--muted);
+}
+
+.detail-grid {
+  display:grid;
+  grid-template-columns:1.4fr 1fr;
+  gap:20px;
+}
+
+.progress {
+  width:100%;
+  height:12px;
+  border-radius:20px;
+  background:#E5EFF0;
+  overflow:hidden;
+  margin:10px 0 20px;
+}
+
+.progress div {
+  background:var(--teal);
+  height:100%;
+  border-radius:20px;
+}
+
+.notice {
+  background:var(--aqua);
+  border-radius:10px;
+  padding:14px;
+  margin:15px 0;
+  color:var(--navy);
+}
+
+.map-area {
+  min-height:250px;
+  border-radius:18px;
+  background:
+    linear-gradient(130deg,#D9F3F0,#B6DEDE);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:25px;
+}
+
+footer {
+  text-align:center;
+  padding:25px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+.mobile-nav {
+  display:none;
+}
+
+@media(max-width:850px) {
+  header nav {
+    display:none;
+  }
+
+  .hero,.detail-grid {
+    grid-template-columns:1fr;
+  }
+
+  .grid {
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .stats {
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .hero-art {
+    height:240px;
+  }
+
+  .mobile-nav {
+    display:flex;
+    position:fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    background:white;
+    border-top:1px solid var(--border);
+    justify-content:space-around;
+    padding:12px 5px;
+    z-index:100;
+  }
+
+  .mobile-nav button {
+    border:0;
+    background:none;
+    color:var(--teal);
+    font-size:12px;
+    font-weight:bold;
+  }
+
+  footer {
+    padding-bottom:85px;
+  }
+}
+
+@media(max-width:550px) {
+  main {
+    padding:22px 14px 90px;
+  }
+
+  .grid,.two {
+    grid-template-columns:1fr;
+  }
+
+  .card {
+    padding:18px;
+  }
+
+  .stat-number {
+    font-size:30px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <a href="#" class="logo" onclick="showPage('home');return false">
+    <span>≈</span> REWAVE
+  </a>
+
+  <nav>
+    <button onclick="showPage('dashboard')">Dashboard</button>
+    <button onclick="showPage('explore')">Explore</button>
+    <button onclick="showPage('map')">Community Map</button>
+    <button onclick="showPage('impact')">Impact</button>
+    <button onclick="showPage('mine')">My Reports</button>
+    <button onclick="showPage('authority')">Authority Demo</button>
+    <button class="btn" onclick="showPage('new')">+ Report Issue</button>
+  </nav>
+</header>
+
+<main>
+
+<!-- LANDING PAGE -->
+<section id="home" class="page active">
+
+  <div class="hero">
+    <div>
+      <div class="eyebrow">COMMUNITY-POWERED WATER ACTION · SDG 6</div>
+
+      <h1>
+        Every drop matters.<br>
+        <span>Every voice counts.</span>
+      </h1>
+
+      <p>
+        Report local water problems, verify community concerns
+        and track every issue from first report to resolution.
+      </p>
+
+      <button class="btn" onclick="showPage('dashboard')">
+        Get Started →
+      </button>
+
+      <button class="btn secondary" onclick="showPage('explore')">
+        Explore Reports
+      </button>
+    </div>
+
+    <div class="hero-art">
+      <div class="symbol">≈</div>
+      <div class="floating">
+        REWAVE<br>
+        <small>Report · Verify · Resolve</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="eyebrow">HOW REWAVE WORKS</div>
+  <h2>From awareness to action.</h2>
+
+  <div class="grid">
+    <div class="card">
+      <div class="eyebrow">01</div>
+      <h3>Report</h3>
+      <p>Submit a water-related problem in your community.</p>
+    </div>
+
+    <div class="card">
+      <div class="eyebrow">02</div>
+      <h3>Verify</h3>
+      <p>Other citizens can independently confirm the issue.</p>
+    </div>
+
+    <div class="card">
+      <div class="eyebrow">03</div>
+      <h3>Resolve</h3>
+      <p>Follow updates and confirm whether the problem was fixed.</p>
+    </div>
+  </div>
+
+  <div class="banner">
+    <h2>Clean water. Stronger communities.</h2>
+    <p>Supporting Sustainable Development Goal 6.</p>
+    <button class="btn secondary" onclick="showPage('new')">
+      Report Your First Issue →
+    </button>
+  </div>
+
+</section>
+
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="page">
+
+  <div class="row">
+    <div>
+      <div class="eyebrow">YOUR COMMUNITY HUB</div>
+      <h1>Community Dashboard</h1>
+      <p>Every report creates a ripple.</p>
+    </div>
+
+    <button class="btn" onclick="showPage('new')">
+      + Report an Issue
+    </button>
+  </div>
+
+  <div class="stats" id="dashboardStats"></div>
+
+  <div class="row">
+    <h2>Recent Community Reports</h2>
+    <button class="btn secondary" onclick="showPage('explore')">
+      View All →
+    </button>
+  </div>
+
+  <div class="grid" id="recentReports"></div>
+
+  <div class="banner">
+    <h2>See what your community is changing.</h2>
+    <button class="btn secondary" onclick="showPage('impact')">
+      Explore Impact →
+    </button>
+  </div>
+
+</section>
+
+
+<!-- REPORT FORM -->
+<section id="new" class="page">
+
+  <div class="eyebrow">MAKE A DIFFERENCE</div>
+  <h1>Report a Water Issue</h1>
+
+  <p>Tell your community what needs attention.</p>
+
+  <div class="card form-container">
+
+    <form id="reportForm">
+
+      <div class="eyebrow">STEP 01 — IDENTIFY THE ISSUE</div>
+
+      <label>
+        Issue Category
+        <select id="category">
+          <option value="Auto">Suggest automatically</option>
+          <option>Water Leakage</option>
+          <option>Water Shortage</option>
+          <option>Sewage Overflow</option>
+          <option>Broken Public Tap</option>
+          <option>Suspected Contamination</option>
+          <option>Other</option>
+        </select>
+      </label>
+
+      <hr>
+
+      <div class="eyebrow">STEP 02 — DESCRIBE THE PROBLEM</div>
+
+      <label>
+        Issue Title
+        <input id="title" required minlength="4" maxlength="120"
+          placeholder="Burst pipe near public market">
+      </label>
+
+      <label>
+        Description
+        <textarea id="description" required minlength="12"
+          maxlength="2000" rows="5"
+          placeholder="Describe the issue in detail..."></textarea>
+      </label>
+
+      <label>
+        Approximate Location
+        <input id="location" required maxlength="150"
+          placeholder="Jayanagar, Bengaluru">
+      </label>
+
+      <div class="two">
+        <label>
+          Households Affected
+          <input id="households" type="number" min="1" max="100000"
+            value="1" required>
+        </label>
+
+        <label>
+          Duration in Days
+          <input id="duration" type="number" min="1" max="365"
+            value="1" required>
+        </label>
+      </div>
+
+      <label>
+        Severity
+        <select id="severity">
+          <option value="1">Low</option>
+          <option value="2">Medium</option>
+          <option value="3">High</option>
+        </select>
+      </label>
+
+      <label>
+        Optional Photo
+        <input id="photo" type="file" accept="image/*">
+      </label>
+
+      <p style="font-size:12px">
+        Small photos can be stored locally in your browser.
+      </p>
+
+      <hr>
+
+      <div class="eyebrow">STEP 03 — SUBMIT</div>
+
+      <button type="button" class="btn secondary" onclick="reviewReport()">
+        Review Report
+      </button>
+
+      <div id="reviewBox" class="notice" style="display:none"></div>
+
+      <br><br>
+
+      <button type="submit" class="btn">
+        Submit Report →
+      </button>
+
+    </form>
+
+  </div>
+
+</section>
+
+
+<!-- EXPLORE -->
+<section id="explore" class="page">
+
+  <div class="row">
+    <div>
+      <div class="eyebrow">COMMUNITY ACTION</div>
+      <h1>Explore Reports</h1>
+      <p>Discover water problems reported by the community.</p>
+    </div>
+
+    <button class="btn" onclick="showPage('new')">
+      + New Report
+    </button>
+  </div>
+
+  <div class="card">
+    <label>
+      Filter by Category
+      <select id="filterCategory" onchange="renderExplore()">
+        <option value="All">All Categories</option>
+        <option>Water Leakage</option>
+        <option>Water Shortage</option>
+        <option>Sewage Overflow</option>
+        <option>Broken Public Tap</option>
+        <option>Suspected Contamination</option>
+        <option>Other</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="grid" id="allReports"></div>
+
+</section>
+
+
+<!-- REPORT DETAILS -->
+<section id="detail" class="page">
+  <button class="btn secondary" onclick="showPage('explore')">
+    ← Back to Reports
+  </button>
+
+  <div id="reportDetail" style="margin-top:25px"></div>
+</section>
+
+
+<!-- COMMUNITY MAP -->
+<section id="map" class="page">
+
+  <div class="eyebrow">COMMUNITY EXPLORER</div>
+  <h1>Water Issue Map</h1>
+
+  <p>Explore issues by their approximate reported location.</p>
+
+  <div class="map-area">
+    <div>
+      <div style="font-size:95px;color:#087E8B">≈</div>
+      <h2>REWAVE Community Explorer</h2>
+      <p>Offline location directory — no map API required.</p>
+    </div>
+  </div>
+
+  <h2>Reported Locations</h2>
+  <div class="grid" id="mapReports"></div>
+
+</section>
+
+
+<!-- MY REPORTS -->
+<section id="mine" class="page">
+
+  <div class="eyebrow">YOUR CONTRIBUTIONS</div>
+  <h1>My Reports</h1>
+
+  <p>Issues submitted from this browser's demo citizen account.</p>
+
+  <div class="grid" id="myReports"></div>
+
+</section>
+
+
+<!-- IMPACT -->
+<section id="impact" class="page">
+
+  <div class="eyebrow">MEASURING PROGRESS</div>
+  <h1>Community Impact</h1>
+
+  <p>Statistics generated from the reports saved in this browser.</p>
+
+  <div class="stats" id="impactStats"></div>
+
+  <div class="card">
+    <h2>Resolution Progress</h2>
+    <div class="progress">
+      <div id="resolutionBar"></div>
+    </div>
+    <p id="resolutionText"></p>
+  </div>
+
+  <div class="card">
+    <h2>Most Common Water Issues</h2>
+    <div id="categoryChart"></div>
+  </div>
+
+</section>
+
+
+<!-- AUTHORITY -->
+<section id="authority" class="page">
+
+  <div class="eyebrow">AUTHORITY DEMONSTRATION</div>
+  <h1>Resolution Command Centre</h1>
+
+  <div class="notice">
+    This is a local demonstration panel, not a real government portal.
+    Anyone using this HTML file can access its demo controls.
+  </div>
+
+  <div class="stats" id="authorityStats"></div>
+
+  <h2>Incoming Complaints</h2>
+
+  <div id="authorityReports"></div>
+
+</section>
+
+</main>
+
+<footer>
+  REWAVE · Clean Water. Stronger Communities. · SDG 6
+</footer>
+
+<div class="mobile-nav">
+  <button onclick="showPage('dashboard')">Home</button>
+  <button onclick="showPage('explore')">Explore</button>
+  <button onclick="showPage('new')">+ Report</button>
+  <button onclick="showPage('impact')">Impact</button>
+  <button onclick="showPage('authority')">Authority</button>
+</div>
+
+
+<script>
+// ---------------- DATA ----------------
+
+const STORAGE_KEY = "rewave_reports_v1";
+const ACTOR_KEY = "rewave_demo_actor";
+
+let reports = [];
+let selectedReport = null;
+
+// A local demo actor lets you switch between citizen identities.
+// This is NOT secure authentication.
+let actor = localStorage.getItem(ACTOR_KEY) || "citizen1";
+
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  }[c]));
+}
+
+function save() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(reports));
+    return true;
+  } catch (error) {
+    alert("Browser storage is full. Try a smaller image or remove old demo data.");
+    return false;
+  }
+}
+
+function load() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    if (Array.isArray(saved)) {
+      reports = saved;
+      return;
+    }
+  } catch (error) {
+    console.warn("Could not load saved reports.", error);
+  }
+
+  // Fictional demonstration records
+  reports = [
+    {
+      id:"RW-1001",
+      owner:"demo",
+      title:"Burst pipe near public market",
+      description:"A pipe has been leaking continuously near the market.",
+      category:"Water Leakage",
+      location:"Jayanagar, Bengaluru",
+      households:20,
+      duration:3,
+      severity:3,
+      status:"In Progress",
+      verifiers:["citizen2","citizen3"],
+      photo:"",
+      created:"Demo record",
+      history:[
+        {status:"Submitted",note:"Demo complaint created.",date:"Demo"},
+        {status:"Community Verified",note:"Community confirmed the issue.",date:"Demo"},
+        {status:"In Progress",note:"Demo authority started reviewing the issue.",date:"Demo"}
+      ]
+    },
+    {
+      id:"RW-1002",
+      owner:"demo",
+      title:"Irregular water supply",
+      description:"Several households have experienced a shortage of water.",
+      category:"Water Shortage",
+      location:"Malleshwaram, Bengaluru",
+      households:35,
+      duration:5,
+      severity:2,
+      status:"Submitted",
+      verifiers:[],
+      photo:"",
+      created:"Demo record",
+      history:[
+        {status:"Submitted",note:"Demo complaint created.",date:"Demo"}
+      ]
+    },
+    {
+      id:"RW-1003",
+      owner:"demo",
+      title:"Blocked sewage drain",
+      description:"A sewage drain is overflowing near the main road.",
+      category:"Sewage Overflow",
+      location:"Indiranagar, Bengaluru",
+      households:12,
+      duration:2,
+      severity:3,
+      status:"Marked Resolved",
+      verifiers:["citizen2"],
+      photo:"",
+      created:"Demo record",
+      history:[
+        {status:"Submitted",note:"Demo complaint created.",date:"Demo"},
+        {status:"Marked Resolved",note:"Demo authority marked the issue resolved.",date:"Demo"}
+      ]
+    }
+  ];
+
+  save();
+}
+
+function dateNow() {
+  return new Date().toLocaleString();
+}
+
+function priority(r) {
+  const value =
+    Number(r.severity) * 2 +
+    Math.min(Math.floor(Number(r.households) / 5),4) +
+    Math.min(Math.floor(Number(r.duration) / 3),4) +
+    Math.min(r.verifiers.length,4);
+
+  if (value >= 10) return "High";
+  if (value >= 5) return "Medium";
+  return "Low";
+}
+
+function classify(text) {
+  const s = text.toLowerCase();
+
+  if (/sewage|drain|sewer|overflow/.test(s)) return "Sewage Overflow";
+  if (/shortage|no water|dry tap|no supply/.test(s)) return "Water Shortage";
+  if (/broken tap|public tap|damaged tap/.test(s)) return "Broken Public Tap";
+  if (/dirty|smell|contaminated|brown water/.test(s)) return "Suspected Contamination";
+  if (/leak|burst pipe|dripping/.test(s)) return "Water Leakage";
+
+  return "Other";
+}
+
+function isResolved(r) {
+  return ["Marked Resolved","Citizen Confirmed"].includes(r.status);
+}
+
+function getStats() {
+  const total = reports.length;
+  const resolved = reports.filter(isResolved).length;
+
+  return {
+    total,
+    resolved,
+    pending:total-resolved,
+    high:reports.filter(r=>priority(r)==="High").length,
+    percentage:total ? Math.round(resolved/total*100) : 0
+  };
+}
+
+
+// ---------------- NAVIGATION ----------------
+
+function showPage(id) {
+  document.querySelectorAll(".page").forEach(page=>{
+    page.classList.remove("active");
+  });
+
+  const target = document.getElementById(id);
+  if (!target) return;
+
+  target.classList.add("active");
+
+  renderAll();
+  window.scrollTo(0,0);
+}
+
+
+// ---------------- CARDS ----------------
+
+function reportCard(r) {
+  return `
+    <div class="card report" onclick="openReport('${r.id}')">
+      <div class="row">
+        <span class="tag">${escapeHTML(r.category)}</span>
+        <span class="tag ${priority(r).toLowerCase()}">
+          ${priority(r)} Priority
+        </span>
+      </div>
+
+      <h3>${escapeHTML(r.title)}</h3>
+      <p>📍 ${escapeHTML(r.location)}</p>
+
+      <div class="row">
+        <small>${escapeHTML(r.id)}</small>
+        <span class="tag">${escapeHTML(r.status)}</span>
+      </div>
+    </div>
+  `;
+}
+
+function emptyMessage() {
+  return `<div class="card"><h3>No reports found</h3>
+  <p>There are no matching complaints yet.</p></div>`;
+}
+
+function statCards(s) {
+  return `
+    <div class="card">
+      <span class="stat-label">Total Reports</span>
+      <span class="stat-number">${s.total}</span>
+    </div>
+    <div class="card">
+      <span class="stat-label">Pending</span>
+      <span class="stat-number">${s.pending}</span>
+    </div>
+    <div class="card">
+      <span class="stat-label">Resolved</span>
+      <span class="stat-number">${s.resolved}</span>
+    </div>
+    <div class="card">
+      <span class="stat-label">High Priority</span>
+      <span class="stat-number">${s.high}</span>
+    </div>
+  `;
+}
+
+
+// ---------------- RENDER DASHBOARDS ----------------
+
+function renderAll() {
+  const s = getStats();
+
+  document.getElementById("dashboardStats").innerHTML = statCards(s);
+  document.getElementById("impactStats").innerHTML = statCards(s);
+  document.getElementById("authorityStats").innerHTML = statCards(s);
+
+  const recent = [...reports].reverse().slice(0,6);
+  document.getElementById("recentReports").innerHTML =
+    recent.map(reportCard).join("") || emptyMessage();
+
+  renderExplore();
+
+  document.getElementById("mapReports").innerHTML =
+    [...reports].reverse().map(reportCard).join("") || emptyMessage();
+
+  const mine = reports.filter(r=>r.owner===actor);
+  document.getElementById("myReports").innerHTML =
+    mine.map(reportCard).join("") || emptyMessage();
+
+  renderImpact();
+  renderAuthority();
+}
+
+function renderExplore() {
+  const category = document.getElementById("filterCategory").value;
+
+  const filtered = reports.filter(r=>
+    category==="All" || r.category===category
+  );
+
+  document.getElementById("allReports").innerHTML =
+    [...filtered].reverse().map(reportCard).join("") || emptyMessage();
+}
+
+
+// ---------------- REPORT SUBMISSION ----------------
+
+function reviewReport() {
+  const form = document.getElementById("reportForm");
+
+  if (!form.reportValidity()) return;
+
+  const title = document.getElementById("title").value;
+  const description = document.getElementById("description").value;
+  const location = document.getElementById("location").value;
+  let category = document.getElementById("category").value;
+
+  if (category==="Auto") category=classify(title+" "+description);
+
+  const box = document.getElementById("reviewBox");
+  box.style.display="block";
+
+  box.innerHTML=`
+    <b>Review Your Report</b>
+    <p><b>Title:</b> ${escapeHTML(title)}</p>
+    <p><b>Category:</b> ${escapeHTML(category)}</p>
+    <p><b>Location:</b> ${escapeHTML(location)}</p>
+    <p><b>Description:</b> ${escapeHTML(description)}</p>
+  `;
+}
+
+document.getElementById("reportForm").addEventListener("submit",async e=>{
+  e.preventDefault();
+
+  const form=e.currentTarget;
+  if (!form.reportValidity()) return;
+
+  const title=document.getElementById("title").value.trim();
+  const description=document.getElementById("description").value.trim();
+  const location=document.getElementById("location").value.trim();
+
+  if (!title || !description || !location) {
+    alert("Please complete all required fields.");
+    return;
+  }
+
+  let category=document.getElementById("category").value;
+  if(category==="Auto") category=classify(title+" "+description);
+
+  const photoFile=document.getElementById("photo").files[0];
+  let photo="";
+
+  if(photoFile) {
+    if(photoFile.size>500000) {
+      alert("Please choose an image smaller than 500 KB for this local demo.");
+      return;
+    }
+
+    photo=await new Promise((resolve,reject)=>{
+      const reader=new FileReader();
+      reader.onload=()=>resolve(reader.result);
+      reader.onerror=()=>reject(new Error("Could not read image"));
+      reader.readAsDataURL(photoFile);
+    }).catch(()=>{
+      alert("Unable to read the selected image.");
+      return null;
+    });
+
+    if(photo===null) return;
+  }
+
+  const id="RW-"+Date.now().toString(36).toUpperCase();
+
+  const report={
+    id,
+    owner:actor,
+    title,
+    description,
+    category,
+    location,
+    households:Number(document.getElementById("households").value),
+    duration:Number(document.getElementById("duration").value),
+    severity:Number(document.getElementById("severity").value),
+    status:"Submitted",
+    verifiers:[],
+    photo,
+    created:dateNow(),
+    history:[
+      {
+        status:"Submitted",
+        note:"Your complaint was successfully registered.",
+        date:dateNow()
+      }
+    ]
+  };
+
+  reports.push(report);
+
+  if(!save()) {
+    reports.pop();
+    return;
+  }
+
+  form.reset();
+  document.getElementById("reviewBox").style.display="none";
+
+  alert("Report submitted successfully! Tracking ID: "+id);
+  openReport(id);
+});
+
+
+// ---------------- REPORT TRACKING ----------------
+
+function openReport(id) {
+  selectedReport=id;
+  showPage("detail");
+  renderDetail();
+}
+
+function renderDetail() {
+  const r=reports.find(x=>x.id===selectedReport);
+  if(!r) return;
+
+  const owner=r.owner===actor;
+  const verified=r.verifiers.includes(actor);
+
+  const photoHTML=r.photo
+    ? `<img src="${r.photo}" alt="Submitted issue photograph"
+         style="max-width:100%;max-height:300px;border-radius:12px">`
+    : "";
+
+  document.getElementById("reportDetail").innerHTML=`
+    <div class="row">
+      <div>
+        <div class="eyebrow">${escapeHTML(r.id)} · ${escapeHTML(r.category)}</div>
+        <h1>${escapeHTML(r.title)}</h1>
+        <p>📍 ${escapeHTML(r.location)}</p>
+      </div>
+
+      <span class="tag ${priority(r).toLowerCase()}">
+        ${priority(r)} Priority
+      </span>
+    </div>
+
+    <div class="detail-grid">
+
+      <div>
+        <div class="card">
+          <h2>Issue Details</h2>
+
+          <p style="white-space:pre-wrap">${escapeHTML(r.description)}</p>
+
+          ${photoHTML}
+
+          <p><b>Households affected:</b> ${r.households}</p>
+          <p><b>Duration:</b> ${r.duration} days</p>
+          <p><b>Submitted:</b> ${escapeHTML(r.created)}</p>
+
+          <div class="row">
+            <span class="tag">${escapeHTML(r.status)}</span>
+            <b>${r.verifiers.length} Confirmations</b>
+          </div>
+
+          <br>
+
+          ${!owner && !verified
+            ? `<button class="btn" onclick="verifyReport()">
+                 I Can Confirm This Issue
+               </button>`
+            : ""}
+
+          ${verified
+            ? `<div class="notice">You have already verified this issue.</div>`
+            : ""}
+
+          ${owner && r.status==="Marked Resolved"
+            ? `
+              <h3>Was the issue actually resolved?</h3>
+              <button class="btn" onclick="citizenDecision('Citizen Confirmed')">
+                Confirm Resolution
+              </button>
+              <button class="btn danger" onclick="citizenDecision('Disputed')">
+                Dispute Resolution
+              </button>
+            `
+            : ""}
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Resolution Timeline</h2>
+
+        <div class="timeline">
+          ${r.history.map(h=>`
+            <div class="event">
+              <b>${escapeHTML(h.status)}</b>
+              <p>${escapeHTML(h.note)}</p>
+              <small>${escapeHTML(h.date)}</small>
+            </div>
+          `).join("")}
+        </div>
+      </div>
+
+    </div>
+  `;
+}
+
+function addHistory(r,status,note) {
+  r.status=status;
+  r.history.push({status,note,date:dateNow()});
+}
+
+function verifyReport() {
+  const r=reports.find(x=>x.id===selectedReport);
+  if(!r) return;
+
+  if(r.owner===actor) {
+    alert("You cannot verify your own report.");
+    return;
+  }
+
+  if(r.verifiers.includes(actor)) {
+    alert("You have already verified this issue.");
+    return;
+  }
+
+  r.verifiers.push(actor);
+
+  if(r.verifiers.length>=2 && r.status==="Submitted") {
+    addHistory(
+      r,
+      "Community Verified",
+      "Two independent demo citizens confirmed this issue."
+    );
+  }
+
+  save();
+  renderDetail();
+}
+
+function citizenDecision(status) {
+  const r=reports.find(x=>x.id===selectedReport);
+
+  if(!r || r.owner!==actor || r.status!=="Marked Resolved") return;
+
+  addHistory(
+    r,
+    status,
+    status==="Disputed"
+      ? "Reporter disputed the resolution."
+      : "Reporter confirmed the issue was resolved."
+  );
+
+  save();
+  renderDetail();
+}
+
+
+// ---------------- IMPACT ----------------
+
+function renderImpact() {
+  const s=getStats();
+
+  document.getElementById("resolutionBar").style.width=s.percentage+"%";
+
+  document.getElementById("resolutionText").textContent=
+    s.percentage+"% of reports are marked resolved.";
+
+  const categories=[...new Set(reports.map(r=>r.category))];
+
+  document.getElementById("categoryChart").innerHTML=
+    categories.map(c=>{
+      const count=reports.filter(r=>r.category===c).length;
+      const percentage=s.total ? count/s.total*100 : 0;
+
+      return `
+        <div class="row">
+          <b>${escapeHTML(c)}</b>
+          <span>${count} reports</span>
+        </div>
+        <div class="progress">
+          <div style="width:${percentage}%"></div>
+        </div>
+      `;
+    }).join("") || "<p>No data available.</p>";
+}
+
+
+// ---------------- AUTHORITY DEMO ----------------
+
+function renderAuthority() {
+  document.getElementById("authorityReports").innerHTML=
+    [...reports].reverse().map(r=>`
+      <div class="card">
+        <div class="row">
+          <div>
+            <small>${escapeHTML(r.id)}</small>
+            <h3>${escapeHTML(r.title)}</h3>
+            <p>📍 ${escapeHTML(r.location)}</p>
+          </div>
+
+          <span class="tag ${priority(r).toLowerCase()}">
+            ${priority(r)} Priority
+          </span>
+        </div>
+
+        <p>Current Status: <b>${escapeHTML(r.status)}</b></p>
+
+        <label>
+          Update Status
+          <select id="status-${r.id}">
+            <option>Under Review</option>
+            <option>In Progress</option>
+            <option>Marked Resolved</option>
+          </select>
+        </label>
+
+        <label>
+          Resolution Notes
+          <textarea id="note-${r.id}" maxlength="1000"
+            placeholder="Enter the work completed or next steps..."></textarea>
+        </label>
+
+        <button class="btn small" onclick="authorityUpdate('${r.id}')">
+          Save Update
+        </button>
+
+        <button class="btn secondary small" onclick="openReport('${r.id}')">
+          View Timeline
+        </button>
+      </div>
+    `).join("") || emptyMessage();
+}
+
+function authorityUpdate(id) {
+  const r=reports.find(x=>x.id===id);
+  if(!r) return;
+
+  const status=document.getElementById("status-"+id).value;
+  const note=document.getElementById("note-"+id).value.trim();
+
+  if(!note) {
+    alert("Please enter an authority update note.");
+    return;
+  }
+
+  addHistory(r,status,note);
+  save();
+
+  alert("Demo authority update saved.");
+  renderAll();
+}
+
+
+// ---------------- DEMO CITIZEN SWITCHING ----------------
+
+// Run switchCitizen() from the browser console to simulate
+// a second independent citizen verifying another person's report.
+
+function switchCitizen() {
+  actor=actor==="citizen1" ? "citizen2" : "citizen1";
+  localStorage.setItem(ACTOR_KEY,actor);
+
+  alert("Switched to demo "+actor+".");
+  renderAll();
+}
+
+
+// ---------------- INITIALISE ----------------
+
+load();
+renderAll();
+</script>
+
+</body>
+</html>
